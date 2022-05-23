@@ -1,0 +1,13 @@
+.name {
+    font-size: 1rem;
+}
+
+.number {
+    font-size: 2rem;
+}
+
+.day {
+    border: 1px solid #ccc;
+    height: 10rem;
+    width: 10rem;
+}
