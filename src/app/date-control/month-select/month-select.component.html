@@ -1,1 +1,30 @@
-<p>month-select works!</p>
+<div class="card" style="width: 25rem;">
+    <div class="card-header">
+        <div class="row justify-content-center">
+            <button type="button" class="btn btn-light btn-sm" (click)="updateYear(prevYear.year)">
+                {{prevYear.year}}
+            </button>
+            <div class="col-6 d-flex justify-content-center">
+                <h3>{{date.year}}</h3>
+            </div>
+            <button type="button" class="btn btn-light btn-sm" (click)="updateYear(nextYear.year)">
+                {{nextYear.year}}
+            </button>
+        </div>
+    </div>
+    <div class="my-2 row justify-content-around align-items-center">
+        <div class="col-3 d-flex justify-content-center">
+            <button type="button" class="btn btn-light btn-sm" (click)="updateMonth(prevMonth.month)">
+                {{prevMonth.monthShort}}
+            </button>
+        </div>
+        <div class="col-6 d-flex justify-content-center">
+            <h1>{{date.monthLong}}</h1>
+        </div>
+        <div class="col-3 d-flex justify-content-center">
+            <button type="button" class="btn btn-light btn-sm" (click)="updateMonth(nextMonth.month)">
+                {{nextMonth.monthShort}}
+            </button>
+        </div>
+    </div>
+</div>
