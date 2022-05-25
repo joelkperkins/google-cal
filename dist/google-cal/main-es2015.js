@@ -884,7 +884,9 @@ let ScheduleDateComponent = class ScheduleDateComponent {
     ngOnInit() {
         // subscribe the active date and set the next and prev day
         this.scheduleService.activeDate.subscribe((date) => {
-            this.activeDate = this.calendar.content[date.day - 1];
+            this.activeDate = this.calendar.content.find((day) => {
+                return day.date.toISODate() === date.toISODate();
+            });
             this.prevDay = date.minus({ days: 1 });
             this.nextDay = date.plus({ days: 1 });
         });

@@ -62,7 +62,6 @@ export class CalendarComponent implements OnInit {
       // build the month days
       this.calendar.content = this.buildMonthDays();
       // build the weeks
-      console.log(this.calendar.content);
       this.calendar.scaleSet = this.buildWeeks(
         this.calendar.content,
         this.calendar.date.daysInMonth
@@ -160,6 +159,8 @@ export class CalendarComponent implements OnInit {
 
   // set cal date to today
   today() {
-    this.timeService.updateDateTime(DateTime.local());
+    const today = DateTime.local();
+    this.timeService.updateDateTime(today);
+    this.scheduleService.updateActiveDate(today);
   }
 }

@@ -1616,7 +1616,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           // subscribe the active date and set the next and prev day
           this.scheduleService.activeDate.subscribe(function (date) {
-            _this4.activeDate = _this4.calendar.content[date.day - 1];
+            _this4.activeDate = _this4.calendar.content.find(function (day) {
+              return day.date.toISODate() === date.toISODate();
+            });
             _this4.prevDay = date.minus({
               days: 1
             });
