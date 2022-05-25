@@ -1,27 +1,20 @@
-<div class="container-fluid mx-5 d-flex flex-column justify-content-center align-items-center">
-    <div class="row justify-content-center"><h1>{{name}}</h1></div>
-    <ng-template [ngIf]="newEvent === true">
-        <div class="m-3 d-flex flex-column justify-content-center align-items-start" style="width: 30rem;">
-            <div class="row d-flex flex-column">
-                <label for="ename">Event name:</label>
-                <input type="text" id="ename" name="ename" [(ngModel)]="eName">
-            </div>
-            <div class="row d-flex flex-column">
-                <label for="time">Event Time:</label>
-                <input type="time" id="time" name="time" [(ngModel)]="eTime">
-            </div>
-            <div class="row d-flex align-self-center">
-                <button class="btn btn-primary" (click)="saveEvent()">Save Event</button>
-            </div>
+<div class="container-fluid">
+    <div class="row my-2 d-flex flex-column flex-md-row">
+        <div class="col-3 d-flex flex-column justify-content-start align-items-center">
+            <app-month-select></app-month-select>
+            <app-schedule-date [calendar]="calendar" (emitNewEvent)="newEvent($event)" (emitDeleteEvent)="deleteEvent($event)"></app-schedule-date>
         </div>
-    </ng-template>
-    <div class="row justify-content-start d-flex flex-column">
-        <div *ngFor="let week of weeks">
-            <div class="row">
-                <div *ngFor="let day of week">
-                    <app-day [day]="day" (click)="addEvent(day)"></app-day>
+        <div class="col-9 d-flex flex-column justify-content-center align-items-start">
+            <div *ngFor="let week of calendar.scaleSet">
+                <div class="row">
+                    <div *ngFor="let day of week">
+                        <app-day [activeDay]="activeDay" [day]="calendar.content[day]" (click)="setActiveDay(calendar.content[day])"></app-day>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="mt-3 row justify-content-center">
+        <a href="https://github.com/joelkperkins/google-cal" target="_blank">View on Github</a>
     </div>
 </div>

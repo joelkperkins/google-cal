@@ -1,9 +1,24 @@
 <div class="col day">
-    <span class="number">{{day.num}}</span>
-    <span class="name m-2">{{day.name}}</span>
+    <div class="d-flex flex-column flex-md-row">
+        <div *ngIf="currentDay(day.date) && isActive(day.date)">
+            <strong class="number current active">{{day.num}}</strong>
+            <strong class="name m-2">{{day.name}}</strong>
+        </div>
+        <div *ngIf="!currentDay(day.date) && isActive(day.date)">
+            <strong class="number active">{{day.num}}</strong>
+            <strong class="name m-2">{{day.name}}</strong>
+        </div>
+        <div *ngIf="currentDay(day.date) && !isActive(day.date)">
+            <strong class="number current">{{day.num}}</strong>
+            <strong class="name m-2">{{day.name}}</strong>
+        </div>
+        <div *ngIf="!currentDay(day.date) && !isActive(day.date)">
+            <strong class="number">{{day.num}}</strong>
+            <strong class="name m-2">{{day.name}}</strong>
+        </div>
+    </div>
     <div *ngFor="let event of day.events">
         <div class="d-flex">
-            <span class="time mr-1">{{event.time}} -</span>
-            <span class="name ml-1">{{event.name}}</span>
+            <span class="text-muted time mr-1">{{getTimeString(event.date)}}</span>
         </div>
 </div>
