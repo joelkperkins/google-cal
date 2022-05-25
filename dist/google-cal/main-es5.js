@@ -71,7 +71,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"container-fluid mx-5 d-flex flex-column justify-content-center align-items-center\">\n    <div class=\"row justify-content-center\"><h1>{{name}}</h1></div>\n    <ng-template [ngIf]=\"newEvent === true\">\n        <div class=\"m-3 d-flex flex-column justify-content-center align-items-start\" style=\"width: 30rem;\">\n            <div class=\"row d-flex flex-column\">\n                <label for=\"ename\">Event name:</label>\n                <input type=\"text\" id=\"ename\" name=\"ename\" [(ngModel)]=\"eName\">\n            </div>\n            <div class=\"row d-flex flex-column\">\n                <label for=\"time\">Event Time:</label>\n                <input type=\"time\" id=\"time\" name=\"time\" [(ngModel)]=\"eTime\">\n            </div>\n            <div class=\"row d-flex align-self-center\">\n                <button class=\"btn btn-primary\" (click)=\"saveEvent()\">Save Event</button>\n            </div>\n        </div>\n    </ng-template>\n    <div class=\"row justify-content-start d-flex flex-column\">\n        <div *ngFor=\"let week of weeks\">\n            <div class=\"row\">\n                <div *ngFor=\"let day of week\">\n                    <app-day [day]=\"day\" (click)=\"addEvent(day)\"></app-day>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";
+    __webpack_exports__["default"] = "<div class=\"container-fluid\">\n    <div class=\"row my-2 d-flex flex-column flex-md-row\">\n        <div class=\"col-3 d-flex flex-column justify-content-start align-items-center\">\n            <app-month-select></app-month-select>\n            <app-schedule-date [calendar]=\"calendar\" (emitNewEvent)=\"newEvent($event)\" (emitDeleteEvent)=\"deleteEvent($event)\"></app-schedule-date>\n        </div>\n        <div class=\"col-9 d-flex flex-column justify-content-center align-items-start\">\n            <div *ngFor=\"let week of calendar.scaleSet\">\n                <div class=\"row\">\n                    <div *ngFor=\"let day of week\">\n                        <app-day [activeDay]=\"activeDay\" [day]=\"calendar.content[day]\" (click)=\"setActiveDay(calendar.content[day])\"></app-day>\n                    </div>\n                </div>\n            </div>\n        </div>\n       \n    </div>\n</div>\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/date-control/month-select/month-select.component.html":
+  /*!*************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/date-control/month-select/month-select.component.html ***!
+    \*************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppDateControlMonthSelectMonthSelectComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"card\" style=\"width: 23vw;\">\n    <div class=\"card-header\">\n        <div class=\"row justify-content-center\">\n            <button type=\"button\" class=\"btn btn-light btn-sm\" (click)=\"updateYear(prevYear.year)\">\n                {{prevYear.year}}\n            </button>\n            <div class=\"col-6 d-flex justify-content-center\">\n                <h3>{{date.year}}</h3>\n            </div>\n            <button type=\"button\" class=\"btn btn-light btn-sm\" (click)=\"updateYear(nextYear.year)\">\n                {{nextYear.year}}\n            </button>\n        </div>\n    </div>\n    <div class=\"my-2 row justify-content-around align-items-center\">\n        <div class=\"col-3 d-flex justify-content-center\">\n            <button type=\"button\" class=\"btn btn-light btn-sm\" (click)=\"updateMonth(prevMonth.month)\">\n                {{prevMonth.monthShort}}\n            </button>\n        </div>\n        <div class=\"col-6 d-flex justify-content-center\">\n            <h1>{{date.monthLong}}</h1>\n        </div>\n        <div class=\"col-3 d-flex justify-content-center\">\n            <button type=\"button\" class=\"btn btn-light btn-sm\" (click)=\"updateMonth(nextMonth.month)\">\n                {{nextMonth.monthShort}}\n            </button>\n        </div>\n    </div>\n</div>";
     /***/
   },
 
@@ -91,7 +111,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"col day\">\n    <span class=\"number\">{{day.num}}</span>\n    <span class=\"name m-2\">{{day.name}}</span>\n    <div *ngFor=\"let event of day.events\">\n        <div class=\"d-flex\">\n            <span class=\"time mr-1\">{{event.time}} -</span>\n            <span class=\"name ml-1\">{{event.name}}</span>\n        </div>\n</div>";
+    __webpack_exports__["default"] = "<div class=\"col day\">\n    <div class=\"d-flex flex-column flex-md-row\">\n        <div *ngIf=\"currentDay(day.date) && isActive(day.date)\">\n            <strong class=\"number current active\">{{day.num}}</strong>\n            <strong class=\"name m-2\">{{day.name}}</strong>\n        </div>\n        <div *ngIf=\"!currentDay(day.date) && isActive(day.date)\">\n            <strong class=\"number active\">{{day.num}}</strong>\n            <strong class=\"name m-2\">{{day.name}}</strong>\n        </div>\n        <div *ngIf=\"currentDay(day.date) && !isActive(day.date)\">\n            <strong class=\"number current\">{{day.num}}</strong>\n            <strong class=\"name m-2\">{{day.name}}</strong>\n        </div>\n        <div *ngIf=\"!currentDay(day.date) && !isActive(day.date)\">\n            <strong class=\"number\">{{day.num}}</strong>\n            <strong class=\"name m-2\">{{day.name}}</strong>\n        </div>\n    </div>\n    <div *ngFor=\"let event of day.events\">\n        <div class=\"d-flex\">\n            <span class=\"text-muted time mr-1\">{{getTimeString(event.date)}}</span>\n        </div>\n</div>";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/schedule/schedule-date/schedule-date.component.html":
+  /*!***********************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/schedule/schedule-date/schedule-date.component.html ***!
+    \***********************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppScheduleScheduleDateScheduleDateComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"container-fluid\" style=\"width: 23vw;\">\n    <div class=\"my-3 row no-gutter d-flex justify-content-between align-items-center\">\n        <div class=\"d-flex\">\n            <button class=\"btn btn-sm btn-light\" (click)=\"updateDate(prevDay)\">\n                <span class=\"text-muted mr-2\">{{prevDay.weekdayShort}}</span>\n                <span class=\"text-muted\">{{prevDay.day}}</span>\n            </button>\n        </div>\n        <div class=\"d-flex justify-content-center\">\n            <span class=\"text-muted mr-2\">{{activeDate.date.weekdayLong}}</span>\n            <span class=\"text-muted\">{{activeDate.date.day}}</span>\n        </div>\n        <div class=\"d-flex\">\n            <button class=\"btn btn-sm btn-light\" (click)=\"updateDate(nextDay)\">\n                <span class=\"text-muted mr-2\">{{nextDay.weekdayShort}}</span>\n                <span class=\"text-muted\">{{nextDay.day}}</span>\n            </button>\n        </div>\n    </div>\n    <div class=\"row schedule\">\n        <div class=\"col-12 d-flex flex-column align-items-center justify-content-start\">\n            <div *ngIf=\"newEvent === false\"class=\"mb-3 d-flex justify-center-center align-items-center\">\n                <button class=\"btn btn-primary\" (click)=\"startNewEvent()\">Schedule Event</button>\n            </div>\n            <div style=\"width: 21vw;\" *ngIf=\"activeDate.events.length > 0 && newEvent === false\">\n                <ul class=\"list-group\">\n                    <li *ngFor=\"let event of activeDate.events\" class=\"list-group-item\">\n                        <div class=\"row d-flex justify-content-start align-items-center\">\n                            <div class=\"col-10\">\n                                <span class=\"mr-5\">{{getTimeString(event.date)}}</span>\n                                <span>{{event.name}}</span>\n                            </div>\n                            <div class=\"col\">\n                                <button class=\"btn btn-sm btn-danger\" (click)=\"deleteEvent(event)\">X</button>\n                            </div>\n                        </div>\n                    </li>\n                </ul>\n            </div>\n            <div *ngIf=\"activeDate.events.length === 0 && newEvent === false\">\n                <div class=\"text-center\">\n                    <span class=\"text-muted\">No events scheduled for this day</span>\n                </div>\n            </div>\n            <div *ngIf=\"newEvent === true\">\n                <div class=\"m-3 d-flex flex-column justify-content-center align-items-start\">\n                    <div class=\"mb-3\">\n                        <label for=\"name\" class=\"form-label\">Event Name</label>\n                        <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"Dinner\" [(ngModel)]=\"eventName\">\n                    </div>\n                        <div class=\"mb-3\">\n                        <label for=\"time\" class=\"form-label\">Event Time</label>\n                        <input type=\"time\" class=\"form-control\" id=\"time\" [(ngModel)]=\"eventTime\">\n                    </div>\n                </div>\n                <div class=\"d-flex flex-column align-items-center\">\n                    <button class=\"btn btn-success mb-1\" (click)=\"saveEvent()\">Schedule Event</button>\n                    <button class=\"btn btn-danger\" (click)=\"cancelEvent()\">Cancel Event</button>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";
     /***/
   },
 
@@ -754,11 +794,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var AppComponent = /*#__PURE__*/_createClass(function AppComponent() {
       _classCallCheck(this, AppComponent);
 
-      this.title = 'google-cal';
+      this.title = "Fred's Calendar";
     });
 
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'app-root',
+      selector: "app-root",
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./app.component.html */
       "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html"))["default"],
@@ -830,13 +870,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _day_day_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ./day/day.component */
     "./src/app/day/day.component.ts");
+    /* harmony import */
+
+
+    var _date_control_month_select_month_select_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ./date-control/month-select/month-select.component */
+    "./src/app/date-control/month-select/month-select.component.ts");
+    /* harmony import */
+
+
+    var _schedule_schedule_date_schedule_date_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ./schedule/schedule-date/schedule-date.component */
+    "./src/app/schedule/schedule-date/schedule-date.component.ts");
 
     var AppModule = /*#__PURE__*/_createClass(function AppModule() {
       _classCallCheck(this, AppModule);
     });
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _calendar_calendar_component__WEBPACK_IMPORTED_MODULE_5__["CalendarComponent"], _day_day_component__WEBPACK_IMPORTED_MODULE_6__["DayComponent"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _calendar_calendar_component__WEBPACK_IMPORTED_MODULE_5__["CalendarComponent"], _day_day_component__WEBPACK_IMPORTED_MODULE_6__["DayComponent"], _date_control_month_select_month_select_component__WEBPACK_IMPORTED_MODULE_7__["MonthSelectComponent"], _schedule_schedule_date_schedule_date_component__WEBPACK_IMPORTED_MODULE_8__["ScheduleDateComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]],
       providers: [],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
@@ -895,21 +947,47 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _time_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../time.service */
+    "./src/app/time.service.ts");
+    /* harmony import */
+
+
+    var _schedule_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../schedule-service.service */
+    "./src/app/schedule-service.service.ts");
+    /* harmony import */
+
+
+    var luxon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! luxon */
+    "./node_modules/luxon/build/cjs-browser/luxon.js");
+    /* harmony import */
+
+
+    var luxon__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_4__);
 
     var CalendarComponent = /*#__PURE__*/function () {
-      function CalendarComponent() {
+      function CalendarComponent(timeService, scheduleService) {
         _classCallCheck(this, CalendarComponent);
 
-        this.name = "May";
-        this.numDays = 31;
-        this.firstDay = "Sunday";
-        this.currDay = 0;
-        this.days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        this.calDays = [];
-        this.weeks = [];
-        this.newEvent = false;
-        this.eName = "";
-        this.eTime = null;
+        this.timeService = timeService;
+        this.scheduleService = scheduleService; // Properties for the calendar
+
+        this.calendar = {
+          date: null,
+          scale: "month",
+          units: "days",
+          content: null,
+          scaleSet: null
+        }; // Properties for the schedule
+
+        this.activeDay = null; // hold saved events from local storage
+
+        this.savedEvents = [];
       }
 
       _createClass(CalendarComponent, [{
@@ -917,66 +995,113 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function ngOnInit() {
           var _this = this;
 
-          this.calDays = new Array(this.numDays).fill({}).map(function (day, index) {
-            var currDay;
+          // get saved events from local storage
+          this.savedEvents = this.scheduleService.getSavedEvents(); // set the schedule active day to today
 
-            if (_this.currDay === 7) {
-              _this.currDay = 0;
-              currDay = _this.currDay;
-            } else {
-              currDay = _this.currDay;
-            }
+          this.scheduleService.updateActiveDate(luxon__WEBPACK_IMPORTED_MODULE_4__["DateTime"].local()); // subscribe to the schedule active day
 
-            _this.currDay++;
+          this.scheduleService.activeDate.subscribe(function (date) {
+            _this.activeDay = date;
+          }); // subscribe to the calendar date
+
+          this.timeService.currentDate.subscribe(function (date) {
+            _this.calendar.date = date; // init the calendar based on the current date
+
+            _this.initCalendar(_this.calendar.scale);
+          });
+        } // init calendar based on the current date
+        // TODO: add a way to change the scale
+
+      }, {
+        key: "initCalendar",
+        value: function initCalendar() {
+          var scale = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "month";
+
+          if (scale === "month") {
+            // build the month days
+            this.calendar.content = this.buildMonthDays(); // build the weeks
+
+            this.calendar.scaleSet = this.buildWeeks(this.calendar.content, this.calendar.date.daysInMonth);
+          }
+        } // build the days for the current month
+
+      }, {
+        key: "buildMonthDays",
+        value: function buildMonthDays() {
+          var _this2 = this;
+
+          return new Array(this.calendar.date.daysInMonth).fill({}).map(function (day, index) {
+            var currentDay = _this2.calendar.date.startOf("month").plus({
+              days: index
+            });
+
             day = {
-              name: _this.days[currDay],
-              num: index + 1,
-              events: []
+              date: currentDay,
+              name: currentDay.weekdayShort,
+              num: currentDay.day,
+              index: index,
+              events: _this2.checkEvents(currentDay)
             };
             return day;
           });
-          var numWeeks = Math.ceil(this.numDays / 7);
+        } // checks if a day has events saved in local storage
 
-          for (var i = 0; i < numWeeks; i++) {
-            this.weeks.push([]);
-            this.weeks[i] = this.calDays.slice(i * 7, (i + 1) * 7);
-          }
-        }
       }, {
-        key: "addEvent",
-        value: function addEvent(day) {
-          this.newEventDay = day;
-          this.newEvent = true;
-        }
-      }, {
-        key: "saveEvent",
-        value: function saveEvent() {
-          if (this.eName === "" || this.eTime === null) {
-            return;
-          }
-
-          var hour = this.eTime.split(":")[0];
-          var min = this.eTime.split(":")[1];
-          var amPm;
-
-          if (hour > 12) {
-            hour = hour - 12;
-            amPm = "PM";
-          } else {
-            amPm = "AM";
-          }
-
-          this.newEventDay.events.push({
-            name: this.eName,
-            time: hour + ":" + min + " " + amPm
+        key: "checkEvents",
+        value: function checkEvents(date) {
+          return this.savedEvents.filter(function (event) {
+            event.date = luxon__WEBPACK_IMPORTED_MODULE_4__["DateTime"].fromISO(event.date);
+            return event.date.day === date.day && event.date.month === date.month && event.date.year === date.year;
           });
-          this.newEvent = false;
-          this.newEventDay = null;
+        } // build the weeks for the current month and adds reference to the days
+
+      }, {
+        key: "buildWeeks",
+        value: function buildWeeks(days, numberOfDays) {
+          var numWeeks = Math.ceil(numberOfDays / 7);
+          return new Array(numWeeks).fill([]).map(function (_, index) {
+            return days.slice(index * 7, (index + 1) * 7).map(function (day) {
+              return day.index;
+            });
+          });
+        } // click on day to set active in the schedule
+
+      }, {
+        key: "setActiveDay",
+        value: function setActiveDay(day) {
+          this.scheduleService.updateActiveDate(day.date);
+        } // adds an event to the calendar
+
+      }, {
+        key: "newEvent",
+        value: function newEvent(e) {
+          this.calendar.content[e.date.index].events.push(e.event);
+          this.calendar.content[e.date.index].events.sort(function (a, b) {
+            return a.date.diff(b.date);
+          });
+          this.scheduleService.saveEvent(e.event);
+        } // removes an event from the calendar
+
+      }, {
+        key: "deleteEvent",
+        value: function deleteEvent(e) {
+          this.calendar.content[e.date.index].events = this.calendar.content[e.date.index].events.filter(function (event) {
+            return event.name !== e.event.name;
+          });
+          this.scheduleService.deleteEvent(e.event);
         }
       }]);
 
       return CalendarComponent;
     }();
+
+    CalendarComponent.ctorParameters = function () {
+      return [{
+        type: _time_service__WEBPACK_IMPORTED_MODULE_2__["TimeService"]
+      }, {
+        type: _schedule_service_service__WEBPACK_IMPORTED_MODULE_3__["ScheduleService"]
+      }];
+    };
 
     CalendarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: "app-calendar",
@@ -987,6 +1112,149 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /*! ./calendar.component.css */
       "./src/app/calendar/calendar.component.css"))["default"]]
     })], CalendarComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/date-control/month-select/month-select.component.css":
+  /*!**********************************************************************!*\
+    !*** ./src/app/date-control/month-select/month-select.component.css ***!
+    \**********************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppDateControlMonthSelectMonthSelectComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2RhdGUtY29udHJvbC9tb250aC1zZWxlY3QvbW9udGgtc2VsZWN0LmNvbXBvbmVudC5jc3MifQ== */";
+    /***/
+  },
+
+  /***/
+  "./src/app/date-control/month-select/month-select.component.ts":
+  /*!*********************************************************************!*\
+    !*** ./src/app/date-control/month-select/month-select.component.ts ***!
+    \*********************************************************************/
+
+  /*! exports provided: MonthSelectComponent */
+
+  /***/
+  function srcAppDateControlMonthSelectMonthSelectComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "MonthSelectComponent", function () {
+      return MonthSelectComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _time_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../../time.service */
+    "./src/app/time.service.ts");
+
+    var MonthSelectComponent = /*#__PURE__*/function () {
+      function MonthSelectComponent(timeService) {
+        _classCallCheck(this, MonthSelectComponent);
+
+        this.timeService = timeService;
+        this.date = null;
+        this.nextMonth = null;
+        this.prevMonth = null;
+        this.prevYear = null;
+        this.nextYear = null;
+      }
+
+      _createClass(MonthSelectComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this3 = this;
+
+          // get current date and set next month/year
+          this.timeService.currentDate.subscribe(function (date) {
+            _this3.date = date;
+            _this3.prevMonth = date.minus({
+              months: 1
+            });
+            _this3.nextMonth = date.plus({
+              months: 1
+            });
+            _this3.prevYear = date.minus({
+              years: 1
+            });
+            _this3.nextYear = date.plus({
+              years: 1
+            });
+          });
+        } // update month and change year if necessary
+
+      }, {
+        key: "updateMonth",
+        value: function updateMonth(month) {
+          if (this.date.month === 1 && month === 12) {
+            this.timeService.updateDateTime(this.date.set({
+              month: month,
+              year: this.date.year - 1
+            }));
+          } else if (this.date.month === 12 && month === 1) {
+            this.timeService.updateDateTime(this.date.set({
+              month: month,
+              year: this.date.year + 1
+            }));
+          } else {
+            this.timeService.updateDateTime(this.date.set({
+              month: month
+            }));
+          }
+        } // update year
+
+      }, {
+        key: "updateYear",
+        value: function updateYear(year) {
+          this.timeService.updateDateTime(this.date.set({
+            year: year
+          }));
+        }
+      }]);
+
+      return MonthSelectComponent;
+    }();
+
+    MonthSelectComponent.ctorParameters = function () {
+      return [{
+        type: _time_service__WEBPACK_IMPORTED_MODULE_2__["TimeService"]
+      }];
+    };
+
+    MonthSelectComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-month-select",
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./month-select.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/date-control/month-select/month-select.component.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./month-select.component.css */
+      "./src/app/date-control/month-select/month-select.component.css"))["default"]]
+    })], MonthSelectComponent);
     /***/
   },
 
@@ -1006,7 +1274,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".name {\n    font-size: 1rem;\n}\n\n.number {\n    font-size: 2rem;\n}\n\n.day {\n    border: 1px solid #ccc;\n    height: 10rem;\n    width: 10rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGF5L2RheS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksZUFBZTtBQUNuQjs7QUFFQTtJQUNJLGVBQWU7QUFDbkI7O0FBRUE7SUFDSSxzQkFBc0I7SUFDdEIsYUFBYTtJQUNiLFlBQVk7QUFDaEIiLCJmaWxlIjoic3JjL2FwcC9kYXkvZGF5LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubmFtZSB7XG4gICAgZm9udC1zaXplOiAxcmVtO1xufVxuXG4ubnVtYmVyIHtcbiAgICBmb250LXNpemU6IDJyZW07XG59XG5cbi5kYXkge1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNjY2M7XG4gICAgaGVpZ2h0OiAxMHJlbTtcbiAgICB3aWR0aDogMTByZW07XG59Il19 */";
+    __webpack_exports__["default"] = ".name {\n    font-size: 1rem;\n}\n\n.number {\n    font-size: 2rem;\n}\n\n.day {\n    border: 1px solid #ccc;\n    height: 10rem;\n    width: 10vw;\n    overflow: hidden;\n    cursor: pointer;\n}\n\n.current {\n    border: .25rem solid #307BFF;\n}\n\n.active {\n    background: #307BFF;\n    color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZGF5L2RheS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksZUFBZTtBQUNuQjs7QUFFQTtJQUNJLGVBQWU7QUFDbkI7O0FBRUE7SUFDSSxzQkFBc0I7SUFDdEIsYUFBYTtJQUNiLFdBQVc7SUFDWCxnQkFBZ0I7SUFDaEIsZUFBZTtBQUNuQjs7QUFHQTtJQUNJLDRCQUE0QjtBQUNoQzs7QUFFQTtJQUNJLG1CQUFtQjtJQUNuQixZQUFZO0FBQ2hCIiwiZmlsZSI6InNyYy9hcHAvZGF5L2RheS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm5hbWUge1xuICAgIGZvbnQtc2l6ZTogMXJlbTtcbn1cblxuLm51bWJlciB7XG4gICAgZm9udC1zaXplOiAycmVtO1xufVxuXG4uZGF5IHtcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjY2NjO1xuICAgIGhlaWdodDogMTByZW07XG4gICAgd2lkdGg6IDEwdnc7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cblxuLmN1cnJlbnQge1xuICAgIGJvcmRlcjogLjI1cmVtIHNvbGlkICMzMDdCRkY7XG59XG5cbi5hY3RpdmUge1xuICAgIGJhY2tncm91bmQ6ICMzMDdCRkY7XG4gICAgY29sb3I6IHdoaXRlO1xufSJdfQ== */";
     /***/
   },
 
@@ -1041,21 +1309,67 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _time_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../time.service */
+    "./src/app/time.service.ts");
+    /* harmony import */
+
+
+    var luxon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! luxon */
+    "./node_modules/luxon/build/cjs-browser/luxon.js");
+    /* harmony import */
+
+
+    var luxon__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_3__);
 
     var DayComponent = /*#__PURE__*/function () {
-      function DayComponent() {
+      function DayComponent(timeService) {
         _classCallCheck(this, DayComponent);
+
+        this.timeService = timeService;
+        this.activeDay = null;
       }
 
       _createClass(DayComponent, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {} // checks if the day is today
+
+      }, {
+        key: "currentDay",
+        value: function currentDay(day) {
+          var today = luxon__WEBPACK_IMPORTED_MODULE_3__["DateTime"].local();
+          return today.day === day.day && today.month === day.month && today.year === day.year;
+        } // checks if the day is the active day
+
+      }, {
+        key: "isActive",
+        value: function isActive(day) {
+          return this.activeDay.day === day.day && this.activeDay.month === day.month && this.activeDay.year === day.year;
+        } // converts the day to a string
+        // 9:00 AM
+
+      }, {
+        key: "getTimeString",
+        value: function getTimeString(date) {
+          return this.timeService.getTimeString(date);
+        }
       }]);
 
       return DayComponent;
     }();
 
+    DayComponent.ctorParameters = function () {
+      return [{
+        type: _time_service__WEBPACK_IMPORTED_MODULE_2__["TimeService"]
+      }];
+    };
+
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], DayComponent.prototype, "day", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], DayComponent.prototype, "activeDay", void 0);
     DayComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: "app-day",
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
@@ -1065,6 +1379,391 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /*! ./day.component.css */
       "./src/app/day/day.component.css"))["default"]]
     })], DayComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/schedule-service.service.ts":
+  /*!*********************************************!*\
+    !*** ./src/app/schedule-service.service.ts ***!
+    \*********************************************/
+
+  /*! exports provided: ScheduleService */
+
+  /***/
+  function srcAppScheduleServiceServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ScheduleService", function () {
+      return ScheduleService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
+    /* harmony import */
+
+
+    var luxon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! luxon */
+    "./node_modules/luxon/build/cjs-browser/luxon.js");
+    /* harmony import */
+
+
+    var luxon__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_3__);
+
+    var ScheduleService = /*#__PURE__*/function () {
+      function ScheduleService() {
+        _classCallCheck(this, ScheduleService);
+
+        this._activeDate = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](luxon__WEBPACK_IMPORTED_MODULE_3__["DateTime"].local());
+        this.activeDate = this._activeDate.asObservable();
+      } // updates the observable date
+
+
+      _createClass(ScheduleService, [{
+        key: "updateActiveDate",
+        value: function updateActiveDate(date) {
+          this._activeDate.next(date);
+        } // save event to local storage
+
+      }, {
+        key: "saveEvent",
+        value: function saveEvent(event) {
+          var savedEvents = JSON.parse(localStorage.getItem("events"));
+
+          if (savedEvents === null) {
+            localStorage.setItem("events", JSON.stringify([event]));
+          } else {
+            savedEvents.push(event);
+            localStorage.setItem("events", JSON.stringify(savedEvents));
+          }
+        } // retrieve saved events from local storage
+
+      }, {
+        key: "getSavedEvents",
+        value: function getSavedEvents() {
+          var savedEvents = JSON.parse(localStorage.getItem("events"));
+
+          if (savedEvents === null) {
+            return [];
+          } else {
+            return savedEvents;
+          }
+        } // delete event from local storage
+
+      }, {
+        key: "deleteEvent",
+        value: function deleteEvent(event) {
+          var savedEvents = JSON.parse(localStorage.getItem("events"));
+
+          if (savedEvents === null) {
+            return;
+          } else {
+            var index = savedEvents.indexOf(event);
+            savedEvents.splice(index, 1);
+            localStorage.setItem("events", JSON.stringify(savedEvents));
+          }
+        }
+      }]);
+
+      return ScheduleService;
+    }();
+
+    ScheduleService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: "root"
+    })], ScheduleService);
+    /***/
+  },
+
+  /***/
+  "./src/app/schedule/schedule-date/schedule-date.component.css":
+  /*!********************************************************************!*\
+    !*** ./src/app/schedule/schedule-date/schedule-date.component.css ***!
+    \********************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppScheduleScheduleDateScheduleDateComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NjaGVkdWxlL3NjaGVkdWxlLWRhdGUvc2NoZWR1bGUtZGF0ZS5jb21wb25lbnQuY3NzIn0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/schedule/schedule-date/schedule-date.component.ts":
+  /*!*******************************************************************!*\
+    !*** ./src/app/schedule/schedule-date/schedule-date.component.ts ***!
+    \*******************************************************************/
+
+  /*! exports provided: ScheduleDateComponent */
+
+  /***/
+  function srcAppScheduleScheduleDateScheduleDateComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ScheduleDateComponent", function () {
+      return ScheduleDateComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _schedule_service_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../../schedule-service.service */
+    "./src/app/schedule-service.service.ts");
+    /* harmony import */
+
+
+    var _time_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../time.service */
+    "./src/app/time.service.ts");
+
+    var ScheduleDateComponent = /*#__PURE__*/function () {
+      function ScheduleDateComponent(scheduleService, timeService) {
+        _classCallCheck(this, ScheduleDateComponent);
+
+        this.scheduleService = scheduleService;
+        this.timeService = timeService;
+        this.emitNewEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.emitDeleteEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.activeDate = {
+          events: []
+        };
+        this.prevDay = null;
+        this.nextDay = null;
+        this.newEvent = false;
+        this.eventName = "";
+        this.eventTime = null;
+      }
+
+      _createClass(ScheduleDateComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          var _this4 = this;
+
+          // subscribe the active date and set the next and prev day
+          this.scheduleService.activeDate.subscribe(function (date) {
+            _this4.activeDate = _this4.calendar.content[date.day - 1];
+            _this4.prevDay = date.minus({
+              days: 1
+            });
+            _this4.nextDay = date.plus({
+              days: 1
+            });
+          });
+        } // update the active date in the schedule and adjust month/year if needed
+
+      }, {
+        key: "updateDate",
+        value: function updateDate(date) {
+          if (this.calendar.date.month !== date.month || this.calendar.date.year !== date.year) {
+            this.timeService.updateDateTime(this.calendar.date.set({
+              month: date.month,
+              year: date.year
+            }));
+          }
+
+          this.scheduleService.updateActiveDate(date);
+        } // show the new event form
+
+      }, {
+        key: "startNewEvent",
+        value: function startNewEvent() {
+          this.newEvent = true;
+        } // remove the new event form
+
+      }, {
+        key: "cancelEvent",
+        value: function cancelEvent() {
+          this.newEvent = false;
+          this.eventName = "";
+          this.eventTime = null;
+        } // convert the time and emit the new event to the cal component
+
+      }, {
+        key: "saveEvent",
+        value: function saveEvent() {
+          if (this.eventName === "" || this.eventTime === null) {
+            return;
+          }
+
+          var hour = this.eventTime.split(":")[0];
+          var min = this.eventTime.split(":")[1];
+          var eventDate = this.activeDate.date.set({
+            hour: parseInt(hour),
+            minute: parseInt(min)
+          });
+          var event = {
+            name: this.eventName,
+            date: eventDate
+          };
+          this.emitNewEvent.emit({
+            date: this.activeDate,
+            event: event
+          });
+          this.cancelEvent();
+        } // convert the time to a string
+        // 9:00 AM
+
+      }, {
+        key: "getTimeString",
+        value: function getTimeString(date) {
+          return this.timeService.getTimeString(date);
+        } // emit the delete event to the cal component
+
+      }, {
+        key: "deleteEvent",
+        value: function deleteEvent(event) {
+          this.emitDeleteEvent.emit({
+            date: this.activeDate,
+            event: event
+          });
+        }
+      }]);
+
+      return ScheduleDateComponent;
+    }();
+
+    ScheduleDateComponent.ctorParameters = function () {
+      return [{
+        type: _schedule_service_service__WEBPACK_IMPORTED_MODULE_2__["ScheduleService"]
+      }, {
+        type: _time_service__WEBPACK_IMPORTED_MODULE_3__["TimeService"]
+      }];
+    };
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], ScheduleDateComponent.prototype, "calendar", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], ScheduleDateComponent.prototype, "emitNewEvent", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], ScheduleDateComponent.prototype, "emitDeleteEvent", void 0);
+    ScheduleDateComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: "app-schedule-date",
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./schedule-date.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/schedule/schedule-date/schedule-date.component.html"))["default"],
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./schedule-date.component.css */
+      "./src/app/schedule/schedule-date/schedule-date.component.css"))["default"]]
+    })], ScheduleDateComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/time.service.ts":
+  /*!*********************************!*\
+    !*** ./src/app/time.service.ts ***!
+    \*********************************/
+
+  /*! exports provided: TimeService */
+
+  /***/
+  function srcAppTimeServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "TimeService", function () {
+      return TimeService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
+    /* harmony import */
+
+
+    var luxon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! luxon */
+    "./node_modules/luxon/build/cjs-browser/luxon.js");
+    /* harmony import */
+
+
+    var luxon__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(luxon__WEBPACK_IMPORTED_MODULE_3__);
+
+    var TimeService = /*#__PURE__*/function () {
+      function TimeService() {
+        _classCallCheck(this, TimeService);
+
+        this._currentDate = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](luxon__WEBPACK_IMPORTED_MODULE_3__["DateTime"].local());
+        this.currentDate = this._currentDate.asObservable();
+      } // updates the observable date
+
+
+      _createClass(TimeService, [{
+        key: "updateDateTime",
+        value: function updateDateTime(date) {
+          this._currentDate.next(date);
+        } // convert time to short string
+        // e.g. "9:00 AM"
+
+      }, {
+        key: "getTimeString",
+        value: function getTimeString(date) {
+          return date.toLocaleString(luxon__WEBPACK_IMPORTED_MODULE_3__["DateTime"].TIME_SIMPLE);
+        }
+      }]);
+
+      return TimeService;
+    }();
+
+    TimeService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: "root"
+    })], TimeService);
     /***/
   },
 
