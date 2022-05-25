@@ -1,24 +1,53 @@
 <div class="col day">
     <div class="d-flex flex-column flex-md-row">
-        <div *ngIf="currentDay(day.date) && isActive(day.date)">
-            <strong class="number current active">{{day.num}}</strong>
-            <strong class="name m-2">{{day.name}}</strong>
-        </div>
-        <div *ngIf="!currentDay(day.date) && isActive(day.date)">
-            <strong class="number active">{{day.num}}</strong>
-            <strong class="name m-2">{{day.name}}</strong>
-        </div>
-        <div *ngIf="currentDay(day.date) && !isActive(day.date)">
-            <strong class="number current">{{day.num}}</strong>
-            <strong class="name m-2">{{day.name}}</strong>
-        </div>
-        <div *ngIf="!currentDay(day.date) && !isActive(day.date)">
-            <strong class="number">{{day.num}}</strong>
-            <strong class="name m-2">{{day.name}}</strong>
-        </div>
+        <ng-template [ngIf]="day.offSet === false" [ngIfElse]="offSet">
+            <!-- current active day -->
+            <div *ngIf="currentDay(day.date) && isActive(day.date)">
+                <strong class="number current active">{{day.num}}</strong>
+                <strong class="name m-2">{{day.name}}</strong>
+            </div>
+            <!-- active day -->
+            <div *ngIf="!currentDay(day.date) && isActive(day.date)">
+                <strong class="number active">{{day.num}}</strong>
+                <strong class="name m-2">{{day.name}}</strong>
+            </div>
+            <!-- current day -->
+            <div *ngIf="currentDay(day.date) && !isActive(day.date)">
+                <strong class="number current">{{day.num}}</strong>
+                <strong class="name m-2">{{day.name}}</strong>
+            </div>
+            <!-- default day -->
+            <div *ngIf="!currentDay(day.date) && !isActive(day.date)">
+                <strong class="number">{{day.num}}</strong>
+                <strong class="name m-2">{{day.name}}</strong>
+            </div>
+        </ng-template>
+        <ng-template #offSet>
+            <!-- current active day -->
+            <div *ngIf="currentDay(day.date) && isActive(day.date)">
+                <strong class="number current active">{{day.num}}</strong>
+                <strong class="name m-2 text-muted">{{day.name}}</strong>
+            </div>
+            <!-- active day -->
+            <div *ngIf="!currentDay(day.date) && isActive(day.date)">
+                <strong class="number active">{{day.num}}</strong>
+                <strong class="name m-2 text-muted">{{day.name}}</strong>
+            </div>
+            <!-- current day -->
+            <div *ngIf="currentDay(day.date) && !isActive(day.date)">
+                <strong class="number current text-muted">{{day.num}}</strong>
+                <strong class="name m-2 text-muted">{{day.name}}</strong>
+            </div>
+            <!-- default day -->
+            <div *ngIf="!currentDay(day.date) && !isActive(day.date)">
+                <strong class="number text-muted">{{day.num}}</strong>
+                <strong class="name m-2 text-muted">{{day.name}}</strong>
+            </div>
+        </ng-template>
     </div>
     <div *ngFor="let event of day.events">
         <div class="d-flex">
             <span class="text-muted time mr-1">{{getTimeString(event.date)}}</span>
         </div>
+    </div>
 </div>
