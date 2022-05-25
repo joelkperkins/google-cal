@@ -104,7 +104,6 @@ export class CalendarComponent implements OnInit {
   }
 
   deleteEvent(e) {
-    console.log(e);
     this.calendar.content[e.date.index].events = this.calendar.content[
       e.date.index
     ].events.filter((event) => {
