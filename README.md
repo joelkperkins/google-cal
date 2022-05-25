@@ -1,5 +1,5 @@
 # View Demo
-[Live Demo](https://628e11b2220b037906f489f8--lustrous-caramel-58c1db.netlify.app/)
+[Live Demo](https://lustrous-caramel-58c1db.netlify.app/)
 
 # GoogleCal
 
