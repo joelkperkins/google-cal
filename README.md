@@ -1,3 +1,6 @@
+# View Demo
+[Live Demo](https://github.com/angular/angular-cli](https://628e11b2220b037906f489f8--lustrous-caramel-58c1db.netlify.app/))
+
 # GoogleCal
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.29.
