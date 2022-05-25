@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { TimeService } from "../time.service";
+import { DateTime } from "luxon";
 
 @Component({
   selector: "app-calendar",
@@ -26,35 +28,65 @@ export class CalendarComponent implements OnInit {
   eName: string = "";
   eTime: any = null;
 
-  constructor() {}
+  calendar: {
+    date: DateTime;
+    scale: string;
+    units: string;
+    content: any[];
+    scaleSet: any[];
+  } = {
+    date: null,
+    scale: "month",
+    units: "days",
+    content: null,
+    scaleSet: null,
+  };
+
+  constructor(private timeService: TimeService) {}
 
   ngOnInit() {
-    this.calDays = new Array(this.numDays).fill({}).map((day, index) => {
-      let currDay;
-
-      if (this.currDay === 7) {
-        this.currDay = 0;
-        currDay = this.currDay;
-      } else {
-        currDay = this.currDay;
-      }
-      this.currDay++;
-
-      day = {
-        name: this.days[currDay],
-        num: index + 1,
-        events: [],
-      };
-
-      return day;
+    this.timeService.currentDate.subscribe((date) => {
+      this.calendar.date = date;
+      this.initCalendar(this.calendar.scale);
     });
+  }
 
-    const numWeeks = Math.ceil(this.numDays / 7);
-
-    for (let i = 0; i < numWeeks; i++) {
-      this.weeks.push([]);
-      this.weeks[i] = this.calDays.slice(i * 7, (i + 1) * 7);
+  initCalendar(scale: string = "month") {
+    if (scale === "month") {
+      this.calendar.content = this.buildMonthDays();
+      this.calendar.scaleSet = this.buildWeeks(
+        this.calendar.content,
+        this.calendar.date.daysInMonth
+      );
     }
+  }
+
+  buildMonthDays() {
+    return new Array(this.calendar.date.daysInMonth)
+      .fill({})
+      .map((day, index) => {
+        let currentDay = this.calendar.date
+          .startOf("month")
+          .plus({ days: index });
+        day = {
+          date: currentDay,
+          name: currentDay.weekdayLong,
+          num: currentDay.day,
+          index: index,
+          events: [],
+        };
+
+        return day;
+      });
+  }
+
+  buildWeeks(days: any[], numberOfDays: number) {
+    const numWeeks = Math.ceil(numberOfDays / 7);
+    return new Array(numWeeks).fill([]).map((_, index) => {
+      return days.slice(index * 7, (index + 1) * 7).map((day) => {
+        return day.index;
+      });
+    });
   }
 
   addEvent(day: any) {

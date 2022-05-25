@@ -9,5 +9,10 @@
 .day {
     border: 1px solid #ccc;
     height: 10rem;
-    width: 10rem;
+    width: 12rem;
+}
+
+.current {
+    border: .25rem solid #9ae0bf;
+    background-color: #9ae0bf;
 }

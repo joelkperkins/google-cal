@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { DateTime } from "luxon";
 
 @Component({
   selector: "app-day",
@@ -11,4 +12,13 @@ export class DayComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  currentDay(day: DateTime) {
+    const today = DateTime.local();
+    return (
+      today.day === day.day &&
+      today.month === day.month &&
+      today.year === day.year
+    );
+  }
 }
