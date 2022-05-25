@@ -15,6 +15,7 @@ export class DayComponent implements OnInit {
 
   ngOnInit() {}
 
+  // checks if the day is today
   currentDay(day: DateTime) {
     const today = DateTime.local();
     return (
@@ -24,6 +25,7 @@ export class DayComponent implements OnInit {
     );
   }
 
+  // checks if the day is the active day
   isActive(day: DateTime) {
     return (
       this.activeDay.day === day.day &&
@@ -32,6 +34,8 @@ export class DayComponent implements OnInit {
     );
   }
 
+  // converts the day to a string
+  // 9:00 AM
   getTimeString(date: DateTime) {
     return this.timeService.getTimeString(date);
   }

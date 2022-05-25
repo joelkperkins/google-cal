@@ -17,6 +17,7 @@ export class MonthSelectComponent implements OnInit {
   constructor(private timeService: TimeService) {}
 
   ngOnInit() {
+    // get current date and set next month/year
     this.timeService.currentDate.subscribe((date) => {
       this.date = date;
       this.prevMonth = date.minus({ months: 1 });
@@ -26,6 +27,7 @@ export class MonthSelectComponent implements OnInit {
     });
   }
 
+  // update month and change year if necessary
   updateMonth(month: number) {
     if (this.date.month === 1 && month === 12) {
       this.timeService.updateDateTime(
@@ -40,6 +42,7 @@ export class MonthSelectComponent implements OnInit {
     }
   }
 
+  // update year
   updateYear(year: number) {
     this.timeService.updateDateTime(this.date.set({ year: year }));
   }

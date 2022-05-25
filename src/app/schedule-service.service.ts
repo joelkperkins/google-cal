@@ -14,10 +14,12 @@ export class ScheduleService {
 
   constructor() {}
 
+  // updates the observable date
   updateActiveDate(date: DateTime) {
     this._activeDate.next(date);
   }
 
+  // save event to local storage
   saveEvent(event: any) {
     const savedEvents = JSON.parse(localStorage.getItem("events"));
     if (savedEvents === null) {
@@ -28,6 +30,7 @@ export class ScheduleService {
     }
   }
 
+  // retrieve saved events from local storage
   getSavedEvents() {
     const savedEvents = JSON.parse(localStorage.getItem("events"));
     if (savedEvents === null) {
@@ -37,6 +40,7 @@ export class ScheduleService {
     }
   }
 
+  // delete event from local storage
   deleteEvent(event: any) {
     const savedEvents = JSON.parse(localStorage.getItem("events"));
     if (savedEvents === null) {

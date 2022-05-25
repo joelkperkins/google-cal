@@ -14,10 +14,13 @@ export class TimeService {
 
   constructor() {}
 
+  // updates the observable date
   updateDateTime(date: DateTime) {
     this._currentDate.next(date);
   }
 
+  // convert time to short string
+  // e.g. "9:00 AM"
   getTimeString(date: DateTime) {
     return date.toLocaleString(DateTime.TIME_SIMPLE);
   }
