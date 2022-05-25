@@ -9,10 +9,17 @@
 .day {
     border: 1px solid #ccc;
     height: 10rem;
-    width: 12rem;
+    width: 10vw;
+    overflow: hidden;
+    cursor: pointer;
 }
 
+
 .current {
-    border: .25rem solid #9ae0bf;
-    background-color: #9ae0bf;
+    border: .25rem solid #307BFF;
+}
+
+.active {
+    background: #307BFF;
+    color: white;
 }

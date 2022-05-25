@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { TimeService } from "../time.service";
 import { DateTime } from "luxon";
 
 @Component({
@@ -8,8 +9,9 @@ import { DateTime } from "luxon";
 })
 export class DayComponent implements OnInit {
   @Input() day: any;
+  @Input() activeDay: DateTime = null;
 
-  constructor() {}
+  constructor(private timeService: TimeService) {}
 
   ngOnInit() {}
 
@@ -20,5 +22,17 @@ export class DayComponent implements OnInit {
       today.month === day.month &&
       today.year === day.year
     );
+  }
+
+  isActive(day: DateTime) {
+    return (
+      this.activeDay.day === day.day &&
+      this.activeDay.month === day.month &&
+      this.activeDay.year === day.year
+    );
+  }
+
+  getTimeString(date: DateTime) {
+    return this.timeService.getTimeString(date);
   }
 }

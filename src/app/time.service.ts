@@ -17,4 +17,8 @@ export class TimeService {
   updateDateTime(date: DateTime) {
     this._currentDate.next(date);
   }
+
+  getTimeString(date: DateTime) {
+    return date.toLocaleString(DateTime.TIME_SIMPLE);
+  }
 }

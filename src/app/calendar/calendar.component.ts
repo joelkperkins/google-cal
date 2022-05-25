@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { TimeService } from "../time.service";
+import { ScheduleService } from "../schedule-service.service";
 import { DateTime } from "luxon";
 
 @Component({
@@ -8,26 +9,6 @@ import { DateTime } from "luxon";
   styleUrls: ["./calendar.component.css"],
 })
 export class CalendarComponent implements OnInit {
-  name: string = "May";
-  numDays: number = 31;
-  firstDay: string = "Sunday";
-  currDay: number = 0;
-  days: string[] = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  calDays: any[] = [];
-  weeks: any[] = [];
-  newEvent: boolean = false;
-  newEventDay: any;
-  eName: string = "";
-  eTime: any = null;
-
   calendar: {
     date: DateTime;
     scale: string;
@@ -41,10 +22,20 @@ export class CalendarComponent implements OnInit {
     content: null,
     scaleSet: null,
   };
+  activeDay: DateTime = null;
+  savedEvents: any[] = [];
 
-  constructor(private timeService: TimeService) {}
+  constructor(
+    private timeService: TimeService,
+    private scheduleService: ScheduleService
+  ) {}
 
   ngOnInit() {
+    this.savedEvents = this.scheduleService.getSavedEvents();
+    this.scheduleService.updateActiveDate(DateTime.local());
+    this.scheduleService.activeDate.subscribe((date) => {
+      this.activeDay = date;
+    });
     this.timeService.currentDate.subscribe((date) => {
       this.calendar.date = date;
       this.initCalendar(this.calendar.scale);
@@ -70,14 +61,25 @@ export class CalendarComponent implements OnInit {
           .plus({ days: index });
         day = {
           date: currentDay,
-          name: currentDay.weekdayLong,
+          name: currentDay.weekdayShort,
           num: currentDay.day,
           index: index,
-          events: [],
+          events: this.checkEvents(currentDay),
         };
 
         return day;
       });
+  }
+
+  checkEvents(date: DateTime) {
+    return this.savedEvents.filter((event) => {
+      event.date = DateTime.fromISO(event.date);
+      return (
+        event.date.day === date.day &&
+        event.date.month === date.month &&
+        event.date.year === date.year
+      );
+    });
   }
 
   buildWeeks(days: any[], numberOfDays: number) {
@@ -89,30 +91,25 @@ export class CalendarComponent implements OnInit {
     });
   }
 
-  addEvent(day: any) {
-    this.newEventDay = day;
-    this.newEvent = true;
+  setActiveDay(day: any) {
+    this.scheduleService.updateActiveDate(day.date);
   }
 
-  saveEvent() {
-    if (this.eName === "" || this.eTime === null) {
-      return;
-    }
-    let hour = this.eTime.split(":")[0];
-    let min = this.eTime.split(":")[1];
-    let amPm;
-    if (hour > 12) {
-      hour = hour - 12;
-      amPm = "PM";
-    } else {
-      amPm = "AM";
-    }
-
-    this.newEventDay.events.push({
-      name: this.eName,
-      time: hour + ":" + min + " " + amPm,
+  newEvent(e) {
+    this.calendar.content[e.date.index].events.push(e.event);
+    this.calendar.content[e.date.index].events.sort((a, b) => {
+      return a.date.diff(b.date);
     });
-    this.newEvent = false;
-    this.newEventDay = null;
+    this.scheduleService.saveEvent(e.event);
+  }
+
+  deleteEvent(e) {
+    console.log(e);
+    this.calendar.content[e.date.index].events = this.calendar.content[
+      e.date.index
+    ].events.filter((event) => {
+      return event.name !== e.event.name;
+    });
+    this.scheduleService.deleteEvent(e.event);
   }
 }
