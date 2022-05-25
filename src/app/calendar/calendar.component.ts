@@ -62,6 +62,7 @@ export class CalendarComponent implements OnInit {
       // build the month days
       this.calendar.content = this.buildMonthDays();
       // build the weeks
+      console.log(this.calendar.content);
       this.calendar.scaleSet = this.buildWeeks(
         this.calendar.content,
         this.calendar.date.daysInMonth
@@ -71,22 +72,44 @@ export class CalendarComponent implements OnInit {
 
   // build the days for the current month
   buildMonthDays() {
-    return new Array(this.calendar.date.daysInMonth)
-      .fill({})
-      .map((day, index) => {
-        let currentDay = this.calendar.date
+    const firstDay = this.calendar.date.startOf("month");
+    let numDays = this.calendar.date.daysInMonth;
+    let initialOffSet = 0;
+    let offSetTracker = 0;
+    // if the first day is not sunday, add days to the beginning of the month
+    if (firstDay.weekday !== 7) {
+      initialOffSet = firstDay.weekday;
+      offSetTracker = firstDay.weekday;
+      numDays += firstDay.weekday;
+    }
+    return new Array(numDays).fill({}).map((day, index) => {
+      let currentDay;
+      let offSet = false;
+      // handle moving the days over so weeks dont start on random days
+      if (offSetTracker > 0) {
+        currentDay = this.calendar.date
           .startOf("month")
-          .plus({ days: index });
-        day = {
-          date: currentDay,
-          name: currentDay.weekdayShort,
-          num: currentDay.day,
-          index: index,
-          events: this.checkEvents(currentDay),
-        };
-
-        return day;
-      });
+          .minus({ days: offSetTracker });
+        offSetTracker -= 1;
+        // set flag so cal knows this day is offset
+        offSet = true;
+      } else {
+        currentDay = this.calendar.date
+          .startOf("month")
+          .plus({ days: index - initialOffSet });
+      }
+      day = {
+        offSet: offSet,
+        date: currentDay,
+        name: currentDay.weekdayShort,
+        num: currentDay.day,
+        index: index,
+        events: this.checkEvents(currentDay),
+      };
+      // reset offset flag
+      offSet = false;
+      return day;
+    });
   }
 
   // checks if a day has events saved in local storage
@@ -133,5 +156,10 @@ export class CalendarComponent implements OnInit {
       return event.name !== e.event.name;
     });
     this.scheduleService.deleteEvent(e.event);
+  }
+
+  // set cal date to today
+  today() {
+    this.timeService.updateDateTime(DateTime.local());
   }
 }
