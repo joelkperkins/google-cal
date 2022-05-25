@@ -71,7 +71,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"container-fluid\">\n    <div class=\"row my-2 d-flex flex-column flex-md-row\">\n        <div class=\"col-3 d-flex flex-column justify-content-start align-items-center\">\n            <app-month-select></app-month-select>\n            <app-schedule-date [calendar]=\"calendar\" (emitNewEvent)=\"newEvent($event)\" (emitDeleteEvent)=\"deleteEvent($event)\"></app-schedule-date>\n        </div>\n        <div class=\"col-9 d-flex flex-column justify-content-center align-items-start\">\n            <div *ngFor=\"let week of calendar.scaleSet\">\n                <div class=\"row\">\n                    <div *ngFor=\"let day of week\">\n                        <app-day [activeDay]=\"activeDay\" [day]=\"calendar.content[day]\" (click)=\"setActiveDay(calendar.content[day])\"></app-day>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"mt-3 row justify-content-center\">\n        <a href=\"https://github.com/joelkperkins/google-cal\" target=\"_blank\">View on Github</a>\n    </div>\n</div>\n";
+    __webpack_exports__["default"] = "<div class=\"container-fluid mt-3\">\n    <div class=\"row\">\n        <div class=\"col-3 d-flex justify-content-end\">\n            <button class=\"btn btn-primary\" (click)=\"today()\">Today</button>\n        </div>\n    </div>\n    <div class=\"row my-2 d-flex flex-column flex-md-row\">\n        <div class=\"col-3 d-flex flex-column justify-content-start align-items-center\">\n            <app-month-select></app-month-select>\n            <app-schedule-date [calendar]=\"calendar\" (emitNewEvent)=\"newEvent($event)\" (emitDeleteEvent)=\"deleteEvent($event)\"></app-schedule-date>\n        </div>\n        <div class=\"col-9 d-flex flex-column justify-content-center align-items-start\">\n            <div *ngFor=\"let week of calendar.scaleSet\">\n                <div class=\"row\">\n                    <div *ngFor=\"let day of week\">\n                        <app-day [activeDay]=\"activeDay\" [day]=\"calendar.content[day]\" (click)=\"setActiveDay(calendar.content[day])\"></app-day>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    <div class=\"mt-3 row justify-content-center\">\n        <a href=\"https://github.com/joelkperkins/google-cal\" target=\"_blank\">View on Github</a>\n    </div>\n</div>\n";
     /***/
   },
 
@@ -111,7 +111,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"col day\">\n    <div class=\"d-flex flex-column flex-md-row\">\n        <div *ngIf=\"currentDay(day.date) && isActive(day.date)\">\n            <strong class=\"number current active\">{{day.num}}</strong>\n            <strong class=\"name m-2\">{{day.name}}</strong>\n        </div>\n        <div *ngIf=\"!currentDay(day.date) && isActive(day.date)\">\n            <strong class=\"number active\">{{day.num}}</strong>\n            <strong class=\"name m-2\">{{day.name}}</strong>\n        </div>\n        <div *ngIf=\"currentDay(day.date) && !isActive(day.date)\">\n            <strong class=\"number current\">{{day.num}}</strong>\n            <strong class=\"name m-2\">{{day.name}}</strong>\n        </div>\n        <div *ngIf=\"!currentDay(day.date) && !isActive(day.date)\">\n            <strong class=\"number\">{{day.num}}</strong>\n            <strong class=\"name m-2\">{{day.name}}</strong>\n        </div>\n    </div>\n    <div *ngFor=\"let event of day.events\">\n        <div class=\"d-flex\">\n            <span class=\"text-muted time mr-1\">{{getTimeString(event.date)}}</span>\n        </div>\n</div>";
+    __webpack_exports__["default"] = "<div class=\"col day\">\n    <div class=\"d-flex flex-column flex-md-row\">\n        <ng-template [ngIf]=\"day.offSet === false\" [ngIfElse]=\"offSet\">\n            <!-- current active day -->\n            <div *ngIf=\"currentDay(day.date) && isActive(day.date)\">\n                <strong class=\"number current active\">{{day.num}}</strong>\n                <strong class=\"name m-2\">{{day.name}}</strong>\n            </div>\n            <!-- active day -->\n            <div *ngIf=\"!currentDay(day.date) && isActive(day.date)\">\n                <strong class=\"number active\">{{day.num}}</strong>\n                <strong class=\"name m-2\">{{day.name}}</strong>\n            </div>\n            <!-- current day -->\n            <div *ngIf=\"currentDay(day.date) && !isActive(day.date)\">\n                <strong class=\"number current\">{{day.num}}</strong>\n                <strong class=\"name m-2\">{{day.name}}</strong>\n            </div>\n            <!-- default day -->\n            <div *ngIf=\"!currentDay(day.date) && !isActive(day.date)\">\n                <strong class=\"number\">{{day.num}}</strong>\n                <strong class=\"name m-2\">{{day.name}}</strong>\n            </div>\n        </ng-template>\n        <ng-template #offSet>\n            <!-- current active day -->\n            <div *ngIf=\"currentDay(day.date) && isActive(day.date)\">\n                <strong class=\"number current active\">{{day.num}}</strong>\n                <strong class=\"name m-2 text-muted\">{{day.name}}</strong>\n            </div>\n            <!-- active day -->\n            <div *ngIf=\"!currentDay(day.date) && isActive(day.date)\">\n                <strong class=\"number active\">{{day.num}}</strong>\n                <strong class=\"name m-2 text-muted\">{{day.name}}</strong>\n            </div>\n            <!-- current day -->\n            <div *ngIf=\"currentDay(day.date) && !isActive(day.date)\">\n                <strong class=\"number current text-muted\">{{day.num}}</strong>\n                <strong class=\"name m-2 text-muted\">{{day.name}}</strong>\n            </div>\n            <!-- default day -->\n            <div *ngIf=\"!currentDay(day.date) && !isActive(day.date)\">\n                <strong class=\"number text-muted\">{{day.num}}</strong>\n                <strong class=\"name m-2 text-muted\">{{day.name}}</strong>\n            </div>\n        </ng-template>\n    </div>\n    <div *ngFor=\"let event of day.events\">\n        <div class=\"d-flex\">\n            <span class=\"text-muted time mr-1\">{{getTimeString(event.date)}}</span>\n        </div>\n    </div>\n</div>";
     /***/
   },
 
@@ -1021,6 +1021,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             // build the month days
             this.calendar.content = this.buildMonthDays(); // build the weeks
 
+            console.log(this.calendar.content);
             this.calendar.scaleSet = this.buildWeeks(this.calendar.content, this.calendar.date.daysInMonth);
           }
         } // build the days for the current month
@@ -1030,18 +1031,44 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function buildMonthDays() {
           var _this2 = this;
 
-          return new Array(this.calendar.date.daysInMonth).fill({}).map(function (day, index) {
-            var currentDay = _this2.calendar.date.startOf("month").plus({
-              days: index
-            });
+          var firstDay = this.calendar.date.startOf("month");
+          var numDays = this.calendar.date.daysInMonth;
+          var initialOffSet = 0;
+          var offSetTracker = 0; // if the first day is not sunday, add days to the beginning of the month
+
+          if (firstDay.weekday !== 7) {
+            initialOffSet = firstDay.weekday;
+            offSetTracker = firstDay.weekday;
+            numDays += firstDay.weekday;
+          }
+
+          return new Array(numDays).fill({}).map(function (day, index) {
+            var currentDay;
+            var offSet = false; // handle moving the days over so weeks dont start on random days
+
+            if (offSetTracker > 0) {
+              currentDay = _this2.calendar.date.startOf("month").minus({
+                days: offSetTracker
+              });
+              offSetTracker -= 1; // set flag so cal knows this day is offset
+
+              offSet = true;
+            } else {
+              currentDay = _this2.calendar.date.startOf("month").plus({
+                days: index - initialOffSet
+              });
+            }
 
             day = {
+              offSet: offSet,
               date: currentDay,
               name: currentDay.weekdayShort,
               num: currentDay.day,
               index: index,
               events: _this2.checkEvents(currentDay)
-            };
+            }; // reset offset flag
+
+            offSet = false;
             return day;
           });
         } // checks if a day has events saved in local storage
@@ -1089,6 +1116,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return event.name !== e.event.name;
           });
           this.scheduleService.deleteEvent(e.event);
+        } // set cal date to today
+
+      }, {
+        key: "today",
+        value: function today() {
+          this.timeService.updateDateTime(luxon__WEBPACK_IMPORTED_MODULE_4__["DateTime"].local());
         }
       }]);
 
